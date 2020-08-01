@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>transform-employess</name>
+    <name>transform-employees</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -548,58 +548,58 @@
   </connection>
   <order>
     <hop>
-      <from>Tabela privileges</from>
-      <to>Sort privileges</to>
+      <from>Input privileges</from>
+      <to>Sort privileges by id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Tabela employee_privileges</from>
-      <to>sort employee_privileges</to>
+      <from>Input employee_privileges</from>
+      <to>Sort employee_privileges by privilege_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>sort employee_privileges</from>
-      <to>Merge Privileges > Emp_Priv</to>
+      <from>Sort employee_privileges by privilege_id</from>
+      <to>Join privileges to employee_privileges</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort privileges</from>
-      <to>Merge Privileges > Emp_Priv</to>
+      <from>Sort privileges by id</from>
+      <to>Join privileges to employee_privileges</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Tabela employees</from>
-      <to>Sort Employees</to>
+      <from>Input employees</from>
+      <to>Sort employees by id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge Privileges > Emp_Priv</from>
-      <to>Merge Privileges > Employees (RIGHT OUTER)</to>
+      <from>Join privileges to employee_privileges</from>
+      <to>Join Right Outer privileges to employees</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort Employees</from>
-      <to>Merge Privileges > Employees (RIGHT OUTER)</to>
+      <from>Sort employees by id</from>
+      <to>Join Right Outer privileges to employees</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Merge Privileges > Employees (RIGHT OUTER)</from>
-      <to>Select New Emplooyes Table Model</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select New Emplooyes Table Model</from>
-      <to>Insert / update</to>
+      <from>Join Right Outer privileges to employees</from>
+      <to>Select emplooyes</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Insert / update</from>
-      <to>Dummy (do nothing)</to>
+      <to>End of Transformation</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select emplooyes</from>
+      <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Dummy (do nothing)</name>
+    <name>End of Transformation</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -618,8 +618,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1696</xloc>
-      <yloc>176</yloc>
+      <xloc>1168</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -751,13 +751,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1472</xloc>
-      <yloc>176</yloc>
+      <xloc>1024</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Merge Privileges > Emp_Priv</name>
+    <name>Join privileges to employee_privileges</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -768,8 +768,8 @@
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>Sort privileges</step1>
-    <step2>sort employee_privileges</step2>
+    <step1>Sort privileges by id</step1>
+    <step2>Sort employee_privileges by privilege_id</step2>
     <keys_1>
       <key>id</key>
     </keys_1>
@@ -785,13 +785,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>224</yloc>
+      <xloc>688</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Merge Privileges > Employees (RIGHT OUTER)</name>
+    <name>Join Right Outer privileges to employees</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -802,8 +802,8 @@
       <schema_name/>
     </partitioning>
     <join_type>RIGHT OUTER</join_type>
-    <step1>Merge Privileges > Emp_Priv</step1>
-    <step2>Sort Employees</step2>
+    <step1>Join privileges to employee_privileges</step1>
+    <step2>Sort employees by id</step2>
     <keys_1>
       <key>employee_id</key>
     </keys_1>
@@ -819,13 +819,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>176</yloc>
+      <xloc>688</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select New Emplooyes Table Model</name>
+    <name>Select emplooyes</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -837,61 +837,80 @@
     </partitioning>
     <fields>
       <field>
-        <name>id</name>
+        <name>id_1</name>
+        <rename>id</rename>
       </field>
       <field>
         <name>company</name>
+        <rename/>
       </field>
       <field>
         <name>last_name</name>
+        <rename/>
       </field>
       <field>
         <name>first_name</name>
+        <rename/>
       </field>
       <field>
         <name>email_address</name>
+        <rename/>
       </field>
       <field>
         <name>job_title</name>
+        <rename/>
       </field>
       <field>
         <name>business_phone</name>
+        <rename/>
       </field>
       <field>
         <name>home_phone</name>
+        <rename/>
       </field>
       <field>
         <name>mobile_phone</name>
+        <rename/>
       </field>
       <field>
         <name>fax_number</name>
+        <rename/>
       </field>
       <field>
         <name>address</name>
+        <rename/>
       </field>
       <field>
         <name>city</name>
+        <rename/>
       </field>
       <field>
         <name>state_province</name>
+        <rename/>
       </field>
       <field>
         <name>zip_postal_code</name>
+        <rename/>
       </field>
       <field>
         <name>country_region</name>
+        <rename/>
       </field>
       <field>
         <name>web_page</name>
+        <rename/>
       </field>
       <field>
         <name>notes</name>
+        <rename/>
       </field>
       <field>
         <name>attachments</name>
+        <rename/>
       </field>
       <field>
         <name>privilege_name</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -904,13 +923,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>176</yloc>
+      <xloc>896</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Sort Employees</name>
+    <name>Sort employees by id</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -952,7 +971,7 @@
     </GUI>
   </step>
   <step>
-    <name>Sort privileges</name>
+    <name>Sort privileges by id</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -989,12 +1008,12 @@
     </remotesteps>
     <GUI>
       <xloc>432</xloc>
-      <yloc>256</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Tabela employee_privileges</name>
+    <name>Input employee_privileges</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1021,7 +1040,7 @@ FROM northwind.employee_privileges
         <name>employee_id</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Tabela employee_privileges</origin>
         <comments>employee_id</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1044,7 +1063,7 @@ FROM northwind.employee_privileges
         <name>privilege_id</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Tabela employee_privileges</origin>
         <comments>privilege_id</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1071,13 +1090,13 @@ FROM northwind.employee_privileges
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>192</yloc>
+      <xloc>208</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Tabela employees</name>
+    <name>Input employees</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1088,9 +1107,7 @@ FROM northwind.employee_privileges
       <schema_name/>
     </partitioning>
     <connection>northwind</connection>
-    <sql>SELECT * FROM employees emp
-	LEFT OUTER JOIN employee_privileges emp_priv ON emp.id = emp_priv.employee_id
-	LEFT OUTER JOIN privileges priv ON emp_priv.privilege_id = priv.id</sql>
+    <sql>SELECT * FROM employees emp</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1104,7 +1121,7 @@ FROM northwind.employee_privileges
         <name>id</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>id</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1127,7 +1144,7 @@ FROM northwind.employee_privileges
         <name>company</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>company</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1150,7 +1167,7 @@ FROM northwind.employee_privileges
         <name>last_name</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>last_name</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1173,7 +1190,7 @@ FROM northwind.employee_privileges
         <name>first_name</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>first_name</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1196,7 +1213,7 @@ FROM northwind.employee_privileges
         <name>email_address</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>email_address</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1219,7 +1236,7 @@ FROM northwind.employee_privileges
         <name>job_title</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>job_title</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1242,7 +1259,7 @@ FROM northwind.employee_privileges
         <name>business_phone</name>
         <length>25</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>business_phone</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1265,7 +1282,7 @@ FROM northwind.employee_privileges
         <name>home_phone</name>
         <length>25</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>home_phone</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1288,7 +1305,7 @@ FROM northwind.employee_privileges
         <name>mobile_phone</name>
         <length>25</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>mobile_phone</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1311,7 +1328,7 @@ FROM northwind.employee_privileges
         <name>fax_number</name>
         <length>25</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>fax_number</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1334,7 +1351,7 @@ FROM northwind.employee_privileges
         <name>address</name>
         <length>715827882</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>address</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1357,7 +1374,7 @@ FROM northwind.employee_privileges
         <name>city</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>city</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1380,7 +1397,7 @@ FROM northwind.employee_privileges
         <name>state_province</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>state_province</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1403,7 +1420,7 @@ FROM northwind.employee_privileges
         <name>zip_postal_code</name>
         <length>15</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>zip_postal_code</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1426,7 +1443,7 @@ FROM northwind.employee_privileges
         <name>country_region</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>country_region</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1449,7 +1466,7 @@ FROM northwind.employee_privileges
         <name>web_page</name>
         <length>715827882</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>web_page</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1472,7 +1489,7 @@ FROM northwind.employee_privileges
         <name>notes</name>
         <length>715827882</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
+        <origin>Input employees</origin>
         <comments>notes</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1494,101 +1511,9 @@ FROM northwind.employee_privileges
         <storagetype>normal</storagetype>
         <name>attachments</name>
         <length>-1</length>
-        <precision>0</precision>
-        <origin>Tabela Employees</origin>
-        <comments>attachments</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>employee_id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Tabela Employees</origin>
-        <comments>employee_id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>privilege_id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Tabela Employees</origin>
-        <comments>privilege_id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id_1</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Tabela Employees</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>privilege_name</name>
-        <length>50</length>
         <precision>-1</precision>
-        <origin>Tabela Employees</origin>
-        <comments>privilege_name</comments>
+        <origin>Input employees</origin>
+        <comments>attachments</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
@@ -1614,13 +1539,13 @@ FROM northwind.employee_privileges
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
+      <xloc>208</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Tabela privileges</name>
+    <name>Input privileges</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1647,7 +1572,7 @@ FROM northwind.privileges
         <name>id</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Tabela privileges</origin>
         <comments>id</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
@@ -1670,7 +1595,7 @@ FROM northwind.privileges
         <name>privilege_name</name>
         <length>50</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>Tabela privileges</origin>
         <comments>privilege_name</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1697,13 +1622,13 @@ FROM northwind.privileges
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>256</yloc>
+      <xloc>208</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sort employee_privileges</name>
+    <name>Sort employee_privileges by privilege_id</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1740,7 +1665,7 @@ FROM northwind.privileges
     </remotesteps>
     <GUI>
       <xloc>432</xloc>
-      <yloc>192</yloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

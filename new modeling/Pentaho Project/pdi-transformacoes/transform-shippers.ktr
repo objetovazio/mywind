@@ -548,18 +548,18 @@
   </connection>
   <order>
     <hop>
-      <from>Tabela Shippers</from>
+      <from>Input shippers</from>
       <to>Insert Shippers</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Insert Shippers</from>
-      <to>Final Transformation</to>
+      <to>End Transformation</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Final Transformation</name>
+    <name>End Transformation</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -578,8 +578,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>112</yloc>
+      <xloc>576</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -706,13 +706,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>112</yloc>
+      <xloc>448</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Tabela Shippers</name>
+    <name>Input shippers</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1157,8 +1157,8 @@ FROM northwind.shippers
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
-      <yloc>112</yloc>
+      <xloc>336</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

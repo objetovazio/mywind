@@ -354,7 +354,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>470</xloc>
+      <xloc>464</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -365,7 +365,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>transform-transform-employees.ktr</filename>
+      <filename>/media/LexisNexis/mywind/new modeling/Pentaho Project/pdi-transformacoes/transform-employees.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -403,7 +403,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>transform-transform-shippers.ktr</filename>
+      <filename>/media/LexisNexis/mywind/new modeling/Pentaho Project/pdi-transformacoes/transform-shippers.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -441,7 +441,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>transform-order-details.ktr</filename>
+      <filename>/media/LexisNexis/mywind/new modeling/Pentaho Project/pdi-transformacoes/transform-order-details.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -479,7 +479,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>transform-date-dimension.ktr</filename>
+      <filename>/media/LexisNexis/mywind/new modeling/Pentaho Project/pdi-transformacoes/transform-date-dimension.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -517,7 +517,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>transform-orders.ktr</filename>
+      <filename>/media/LexisNexis/mywind/new modeling/Pentaho Project/pdi-transformacoes/transform-orders.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
