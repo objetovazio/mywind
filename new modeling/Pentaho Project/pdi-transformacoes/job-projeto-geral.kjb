@@ -316,7 +316,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1376</xloc>
+      <xloc>1370</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -327,7 +327,7 @@
       <attributes/>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>transform-transform-customers.ktr</filename>
+      <filename>/media/LexisNexis/mywind/new modeling/Pentaho Project/pdi-transformacoes/transform-customers.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -354,7 +354,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>464</xloc>
+      <xloc>470</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -392,7 +392,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>624</xloc>
+      <xloc>620</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -430,7 +430,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>768</xloc>
+      <xloc>770</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -468,7 +468,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>912</xloc>
+      <xloc>1220</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -506,7 +506,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1072</xloc>
+      <xloc>920</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -544,7 +544,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1232</xloc>
+      <xloc>1070</xloc>
       <yloc>224</yloc>
       <attributes_kjc/>
     </entry>
@@ -579,15 +579,6 @@
     </hop>
     <hop>
       <from>Fill Shippers</from>
-      <to>Fill Order Details</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Fill Order Details</from>
       <to>Fill date_dimension</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -600,16 +591,25 @@
       <to>Fill Orders</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Fill Orders</from>
+      <to>Fill Order Details</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Fill Order Details</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>

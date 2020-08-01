@@ -548,23 +548,23 @@
   </connection>
   <order>
     <hop>
-      <from>Get Customers Data</from>
-      <to>Select All Customers Data</to>
+      <from>Input Customers</from>
+      <to>Select Customers</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select All Customers Data</from>
-      <to>Insert Customers to Model</to>
+      <from>Select Customers</from>
+      <to>Insert Customers</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Insert Customers to Model</from>
-      <to>Fim da transform</to>
+      <from>Insert Customers</from>
+      <to>End Transform</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Fim da transform</name>
+    <name>End Transform</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -583,13 +583,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>80</yloc>
+      <xloc>912</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get Customers Data</name>
+    <name>Input Customers</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1032,13 +1032,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>80</yloc>
+      <xloc>544</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Insert Customers to Model</name>
+    <name>Insert Customers</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -1160,13 +1160,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>80</yloc>
+      <xloc>800</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select All Customers Data</name>
+    <name>Select Customers</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1242,8 +1242,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>80</yloc>
+      <xloc>672</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
